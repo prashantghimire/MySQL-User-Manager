@@ -1,0 +1,1 @@
+C:\xampp\php\php.exe -S localhost:3000 -t "C:\Users\Prashant\Documents\Documents\McClimans\MySQL Manager"
