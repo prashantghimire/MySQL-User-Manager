@@ -16,20 +16,16 @@ class Dashboard extends CI_Controller {
 
     public function add()
     {
-        if($this->input->post('users')){
-
-        }
+        $users = $this->input->post('users');
         $this->load->database();
-        $this->load->library('UserManager');
-
-        print_r($query->result());
-//        foreach ($query->result('User') as $user)
-//        {
-//            echo $user->name; // access attributes
-//            echo $user->reverse_name(); // or methods defined on the 'User' class
-//        }
-
-        $this->load->view('dashboard/add');
+        $data = array();
+        if($this->input->post('users')){
+            $this->load->model('UserManager_model');
+            $this->UserManager_model->users = explode(',', $users);
+            $this->UserManager_model->createMySQLUsers();
+            $data['messages']= ($this->UserManager_model->message);
+        }
+        $this->load->view('dashboard/add', $data);
         $this->load->view('shared/footer');
     }
 }
